@@ -8,12 +8,14 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { HttpClientModule } from "@angular/common/http";
 import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
 import {InMemoryDataService} from "./service/in-memory-data.service";
+import { BooksComponent } from './books/books.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRegistrationComponent,
-    GalleryComponent
+    GalleryComponent,
+    BooksComponent
   ],
   imports: [
     BrowserModule,
