@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
-import { GalleryComponent } from './gallery/gallery.component';
 import { HttpClientModule } from "@angular/common/http";
 import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
 import {InMemoryDataService} from "./service/in-memory-data.service";
@@ -14,7 +13,6 @@ import { BooksComponent } from './books/books.component';
   declarations: [
     AppComponent,
     UserRegistrationComponent,
-    GalleryComponent,
     BooksComponent
   ],
   imports: [
