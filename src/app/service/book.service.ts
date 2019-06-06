@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import {Book} from '../model/book';
-import { catchError, map, tap } from 'rxjs/operators';
+import {InMemoryDataService} from './in-memory-data.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,37 +15,21 @@ export class BookService {
 
   private booksUrl = 'api/books';
 
-  constructor(private http: HttpClient,
-              private bookService: BookService) {
+  constructor(private db: InMemoryDataService) {
   }
 
   getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>(this.booksUrl);
+    return of(this.db.books);
   }
 
   create(book: Book): Observable<Book> {
-    return this.http.post<Book>(this.booksUrl, book, httpOptions).pipe(
-      tap((newBook: Book) => this.log(`added book w/ id=${newBook.id}`)),
-      catchError(this.handleError<Book>('addHero'))
-    );
+    return this.db.createBook(book);
   }
 
-  /** Log a HeroService message with the MessageService */
-  private log(message: string) {
-    window.alert();
+  deleteBook(book: Book) {
+    this.db.deleteBook(book);
   }
-
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+  updateBook(book: Book) {
+    this.db.updateBook(book);
   }
 }

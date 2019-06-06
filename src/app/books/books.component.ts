@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BookService} from "../service/book.service";
 import {Book} from "../model/book";
+import {InMemoryDataService} from '../service/in-memory-data.service';
 
 @Component({
   selector: 'app-books',
@@ -9,8 +10,10 @@ import {Book} from "../model/book";
 })
 export class BooksComponent implements OnInit {
   books: Book[];
+  bookId: number;
 
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService,
+              private db: InMemoryDataService) { }
 
   ngOnInit() {
     this.getBooks();
@@ -20,16 +23,29 @@ export class BooksComponent implements OnInit {
     this.bookService.getBooks().subscribe(books => this.books = books);
   }
 
-  createBook(name: string, description: string): void {
+  createBook(name: string, description: string, imageUrl: string): void {
     name = name.trim();
     description = description.trim();
-    if (!name || !description) {
+    imageUrl = imageUrl.trim();
+    if (!name || !description || !imageUrl) {
       return;
     }
-    this.bookService.create(({name, description} as Book)).subscribe(book => {
-      window.alert(book);
+    this.bookService.create(({name, description, imageUrl} as Book)).subscribe(book => {
       this.books.push(book);
     });
+  }
+
+  deleteBook(book: Book): void {
+    this.bookService.deleteBook(book);
+    this.getBooks();
+  }
+  saveBookId(id: number) {
+    this.bookId = id;
+  }
+  updateBook(newName: string, newDesc: string, newImageUrl: string) {
+    const book: Book = {id: this.bookId, name: newName, description: newDesc, imageUrl: newImageUrl } as Book;
+    this.bookService.updateBook(book);
+    this.getBooks();
   }
 
 }
