@@ -2,7 +2,7 @@
 <div *ngIf="_router.url == '/home'">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
-    <a class="navbar-brand" routerLink="/home">Online Library</a>
+    <a class="navbar-brand" routerLink="/home">Online Courses</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -35,10 +35,25 @@
   <!-- Jumbotron Header -->
   <header class="jumbotron my-4">
     <h1 class="display-3">Welcome to <span class="welcome">{{title}}!</span></h1>
-    <p class="lead">That's the place where you can enjoy your favourite books online.</p>
+    <p class="lead">That's the place where you can take some awesome courses.</p>
   </header>
 
-  <app-books></app-books>
+  <div class="row text-center">
+    <div class="col-lg-6 col-md-6 mb-4" *ngFor="let course of recentCourses">
+      <div class="card">
+        <img class="card-img-top" src="{{course.imageUrl}}" width="325" height="400" alt="">
+        <div class="card-body">
+          <h4 class="card-title">{{course.name}}</h4>
+          <p class="card-text">{{course.description}}</p>
+        </div>
+        <div class="card-footer text-left">
+          <div><b>Starts:</b> {{course.startDateTime | date: 'dd/MM/yyyy'}} at {{course.startDateTime | date: 'h:mm:ss'}}</div>
+          <div><b>Ends:</b> {{course.endDateTime | date: 'dd/MM/yyyy'}} at {{course.endDateTime | date: 'h:mm:ss'}}</div>
+          <div><b>Price:</b> {{course.price}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
     Add new book

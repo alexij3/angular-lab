@@ -1,17 +1,29 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {CourseService} from './service/course.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'Online Library';
+export class AppComponent implements OnInit{
+  title = 'Online Courses';
   router: string;
 
-  constructor(private _router: Router) {
+  recentCourses: any = [];
+
+  constructor(private _router: Router,
+              private courseService: CourseService) {
 
     this.router = _router.url;
   }
+
+  ngOnInit() {
+    this.courseService.getRecentCourses().subscribe(data => {
+      this.recentCourses = data;
+      console.log(data);
+    });
+  }
+
 }
