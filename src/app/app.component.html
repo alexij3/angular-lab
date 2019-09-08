@@ -38,7 +38,7 @@
     <p class="lead">That's the place where you can take some awesome courses.</p>
   </header>
 
-  <div class="row text-center">
+  <div class="row text-center" *ngIf="!showCreateCourse">
     <div class="col-lg-6 col-md-6 mb-4" *ngFor="let course of recentCourses">
       <div class="card">
         <img class="card-img-top" src="{{course.imageUrl}}" width="325" height="400" alt="">
@@ -49,16 +49,20 @@
         <div class="card-footer text-left">
           <div><b>Starts:</b> {{course.startDateTime | date: 'dd/MM/yyyy'}} at {{course.startDateTime | date: 'h:mm:ss'}}</div>
           <div><b>Ends:</b> {{course.endDateTime | date: 'dd/MM/yyyy'}} at {{course.endDateTime | date: 'h:mm:ss'}}</div>
-          <div><b>Price:</b> {{course.price}}</div>
+          <div><b>Price:</b> {{course.price}} {{course.currency}}</div>
         </div>
       </div>
     </div>
   </div>
 
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    Add new book
-  </button>
-
+    <div class="text-right">
+        <button type="button" class="btn btn-primary" (click)="toggleShowCreateCourse()" *ngIf="!showCreateCourse">
+          Add new course
+        </button>
+    </div>
+    <div *ngIf="showCreateCourse">
+      <app-coursemaint></app-coursemaint>
+    </div>
 </div>
 <!-- /.container -->
 <!-- Footer -->

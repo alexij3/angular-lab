@@ -7,18 +7,21 @@ import { UserRegistrationComponent } from './user-registration/user-registration
 import { HttpClientModule } from "@angular/common/http";
 import { BooksComponent } from './books/books.component';
 import { CourseComponent } from './course/course.component';
+import { CoursemaintComponent } from './coursemaint/coursemaint.component';
+import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRegistrationComponent,
     BooksComponent,
-    CourseComponent
+    CourseComponent, CoursemaintComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    RichTextEditorAllModule
   ],
   providers: [],
   bootstrap: [AppComponent]
