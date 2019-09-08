@@ -1,0 +1,9 @@
+<label for="course-name" id="course-name-label">Name: </label> <br>
+<input id="course-name" name="name" type="text" minlength="1" maxlength="255" placeholder="Enter course name..." />
+<label for="course-description" id="course-description-label">Description: </label>
+<ejs-richtexteditor #toolsRTE id="course-description" [toolbarSettings]='tools'></ejs-richtexteditor>
+<div id="course-create-buttons" class="text-right">
+  <button type="button" class="btn btn-danger" (click)="toggleShowCreateCourse()">
+    Cancel
+  </button>
+</div>

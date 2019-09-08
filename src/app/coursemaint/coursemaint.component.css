@@ -1,0 +1,18 @@
+input {
+  margin-bottom: 5px;
+  padding-left: 8px;
+}
+
+#course-create-buttons {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#course-name {
+  width: 100%;
+}
+
+#course-name-label, #course-description-label {
+  font-size: 24px;
+  font-weight: bold;
+}
