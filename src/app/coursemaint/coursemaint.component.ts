@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AppComponent} from '../app.component';
-import $ from 'jquery';
+import {NgForm} from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-coursemaint',
@@ -12,11 +13,9 @@ export class CoursemaintComponent implements OnInit {
   constructor(private appComponent: AppComponent) { }
 
   ngOnInit() {
-    console.log($('#course-description'));
   }
 
   public toggleShowCreateCourse(): void {
-    console.log($('#course-description'));
+    this.appComponent.toggleShowCreateCourse();
   }
-
 }

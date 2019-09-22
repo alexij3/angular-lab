@@ -44,7 +44,7 @@
         <img class="card-img-top" src="{{course.imageUrl}}" width="325" height="400" alt="">
         <div class="card-body">
           <h4 class="card-title">{{course.name}}</h4>
-          <p class="card-text">{{course.description}}</p>
+          <div [innerHTML]="course.description | sanitizehtml"></div>
         </div>
         <div class="card-footer text-left">
           <div><b>Starts:</b> {{course.startDateTime | date: 'dd/MM/yyyy'}} at {{course.startDateTime | date: 'h:mm:ss'}}</div>

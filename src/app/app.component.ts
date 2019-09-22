@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {CourseService} from './service/course.service';
-import {getTinymce} from '@tinymce/tinymce-angular/TinyMCE';
+import {SanitizeHtmlPipe} from './sanitize-html.pipe';
 
 @Component({
   selector: 'app-root',
@@ -21,16 +21,6 @@ export class AppComponent implements OnInit{
 
     this.router = _router.url;
   }
-
-  public tools: object = {
-    items: [
-      'Bold', 'Italic', 'Underline', 'StrikeThrough', '|',
-      'FontName', 'FontSize', 'FontColor', 'BackgroundColor', '|',
-      'LowerCase', 'UpperCase', '|', 'Undo', 'Redo', '|',
-      'Formats', 'Alignments', '|', 'OrderedList', 'UnorderedList', '|',
-      'Indent', 'Outdent', '|', 'CreateLink', 'CreateTable',
-      'Image', '|', 'ClearFormat', 'Print', 'SourceCode', '|', 'FullScreen']
-  };
 
   ngOnInit() {
     this.showCreateCourse = false;

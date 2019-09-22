@@ -9,19 +9,23 @@ import { BooksComponent } from './books/books.component';
 import { CourseComponent } from './course/course.component';
 import { CoursemaintComponent } from './coursemaint/coursemaint.component';
 import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
+import { FormsModule } from '@angular/forms';
+import { CourseformComponent } from './courseform/courseform.component';
+import { SanitizeHtmlPipe } from './sanitize-html.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRegistrationComponent,
     BooksComponent,
-    CourseComponent, CoursemaintComponent
+    CourseComponent, CoursemaintComponent, CourseformComponent, SanitizeHtmlPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RichTextEditorAllModule
+    RichTextEditorAllModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
