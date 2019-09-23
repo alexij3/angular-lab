@@ -1,0 +1,30 @@
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#course-description {
+  margin-bottom: 15px;
+}
+
+#date-time-wrapper label {
+  margin-right: 10px;
+}
+
+input {
+  margin-bottom: 5px;
+  padding-left: 8px;
+  width: 200px;
+}
+
+#course-name {
+  width: 100%;
+}
