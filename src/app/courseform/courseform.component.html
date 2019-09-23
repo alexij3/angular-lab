@@ -1,26 +1,30 @@
 <div class="form-group">
     <form id="create-course-form" #form="ngForm" (ngSubmit)="onSubmit(form)">
-      <label for="course-name" id="course-name-label">Name: </label> <br>
-      <input class="form-control" id="course-name" name="name" #name="ngModel" type="text" minlength="1" maxlength="255" placeholder="Enter course name..." required [(ngModel)]="course.name"/>
-      <div [hidden]="name.valid"
-           class="alert alert-danger">
-        Name is required
-      </div>
-      <label for="course-description" id="course-description-label">Description: </label>
-      <ejs-richtexteditor #toolsRTE id="course-description" [toolbarSettings]='tools' #fromRTE [(value)]='rteValue' required name="description" [(ngModel)]="course.description" #description="ngModel"></ejs-richtexteditor>
-      <div [hidden]="description.valid"
-           class="alert alert-danger">
-        Description is required
-      </div>
-      <div id="date-time-wrapper">
-        <label for="start-date-time">Choose start date and time: </label>
-        <input type="datetime-local" class="form-control" id="start-date-time" name="startDateTime" required [(ngModel)]="course.startDateTime"/> <br>
-        <label for="end-date-time">Choose end date and time: </label>
-        <input type="datetime-local" class="form-control" id="end-date-time" name="endDateTime" required [(ngModel)]="course.endDateTime"/> <br>
-        <label for="course-price">Course price (leave 0 if it's free): </label>
-        <input name="price" class="form-control" id="course-price" type="number" min="0" [(ngModel)]="course.price"/>
-        <label for="image">Select a preview image for the course: </label>
-        <input id="image" type="image"/>
-      </div>
+        <label for="course-name" id="course-name-label">Name: </label> <br>
+        <input class="form-control" id="course-name" name="name" #name="ngModel" type="text" minlength="1" maxlength="255" placeholder="Enter course name..." required [(ngModel)]="course.name"/>
+        <div [hidden]="name.valid"
+             class="alert alert-danger">
+          Name is required
+        </div>
+        <label for="course-short-desc">Short description: </label>
+        <input type="text" name="short-description" id="course-short-desc" class="form-control" minlength="1" maxlength="100" required [(ngModel)]="course.shortDescription" #shortDescription="ngModel"/> <br>
+        <div [hidden]="shortDescription.valid"
+             class="alert alert-danger">
+            Short description is required
+        </div>
+        <label for="course-description" id="course-description-label">Description: </label>
+        <ejs-richtexteditor #toolsRTE id="course-description" [toolbarSettings]='tools' #fromRTE [(value)]='rteValue' required name="description" [(ngModel)]="course.description" #description="ngModel"></ejs-richtexteditor>
+        <div [hidden]="description.valid"
+             class="alert alert-danger">
+            Description is required
+        </div>
+        <div id="date-time-wrapper">
+          <label for="start-date-time">Choose start date and time: </label>
+          <input type="datetime-local" class="form-control" id="start-date-time" name="startDateTime" required [(ngModel)]="course.startDateTime"/> <br>
+          <label for="end-date-time">Choose end date and time: </label>
+          <input type="datetime-local" class="form-control" id="end-date-time" name="endDateTime" required [(ngModel)]="course.endDateTime" max="2099-12-31T00:00"/> <br>
+          <label for="course-price">Course price (leave 0 if it's free): </label>
+          <input name="price" class="form-control" id="course-price" type="number" min="0" [(ngModel)]="course.price"/>
+        </div>
     </form>
 </div>

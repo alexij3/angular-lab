@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Course} from '../model/course';
 import {Observable} from 'rxjs';
 
@@ -17,7 +17,6 @@ export class CourseService {
   }
 
   public createCourse(course: Course): Observable<Course> {
-    console.log(course);
     return this.httpClient.post<Course>(this.baseUrl + '/courses/create', course);
   }
 }

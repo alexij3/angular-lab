@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Course} from '../model/course';
 import {NgForm} from '@angular/forms';
 import {CourseService} from '../service/course.service';
+import {AppComponent} from "../app.component";
 
 @Component({
   selector: 'app-courseform',
@@ -10,7 +11,8 @@ import {CourseService} from '../service/course.service';
 })
 export class CourseformComponent implements OnInit {
 
-  course = new Course('', '', null, null, 0, '');
+  course = new Course('', '', '', null, null, 0);
+  previewImageSrc: string | ArrayBuffer;
 
   public tools: object = {
     items: [
@@ -22,21 +24,24 @@ export class CourseformComponent implements OnInit {
       'Image', '|', 'ClearFormat', 'Print', 'SourceCode', '|', 'FullScreen']
   };
 
-  constructor(private courseService: CourseService) { }
+  constructor(private courseService: CourseService,
+              private appComponent: AppComponent) { }
 
   ngOnInit() {
   }
 
   public onSubmit(form: NgForm): void {
-    console.log('kek');
-    if (form.valid) {
-      console.log(this.course);
-      this.courseService.createCourse(this.course).subscribe(
-        response => console.log(response),
-        err => console.log(err));
-    } else {
-        window.alert('Form is invalid');
-    }
+      if (form.valid) {
+        this.courseService.createCourse(this.course).subscribe(
+          response => {
+             window.alert('Course has been successfully added!');
+             this.appComponent.syncRecentCourses();
+             this.appComponent.toggleShowCreateCourse();
+          },
+          err => window.alert('Something went wrong during course creation.'));
+      } else {
+          window.alert('Form is invalid');
+      }
   }
 
 }

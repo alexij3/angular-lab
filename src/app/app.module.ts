@@ -12,6 +12,7 @@ import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor'
 import { FormsModule } from '@angular/forms';
 import { CourseformComponent } from './courseform/courseform.component';
 import { SanitizeHtmlPipe } from './sanitize-html.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SanitizeHtmlPipe } from './sanitize-html.pipe';
     AppRoutingModule,
     HttpClientModule,
     RichTextEditorAllModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
