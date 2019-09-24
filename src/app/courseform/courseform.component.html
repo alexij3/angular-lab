@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="form-group" *ngIf="appComponent.showCreateCourse">
     <form id="create-course-form" #form="ngForm" (ngSubmit)="onSubmit(form)">
         <label for="course-name" id="course-name-label">Name: </label> <br>
         <input class="form-control" id="course-name" name="name" #name="ngModel" type="text" minlength="1" maxlength="255" placeholder="Enter course name..." required [(ngModel)]="course.name"/>
@@ -26,5 +26,34 @@
           <label for="course-price">Course price (leave 0 if it's free): </label>
           <input name="price" class="form-control" id="course-price" type="number" min="0" [(ngModel)]="course.price"/>
         </div>
+        <div class="text-right course-form-buttons">
+            <button type="submit" class="btn btn-success">Create</button>
+            <button type="button" class="btn btn-danger" (click)="toggleShowCreateCourse()">
+                Cancel
+            </button>
+        </div>
     </form>
 </div>
+<div class="form-group" *ngIf="appComponent.showCreateCoursePart">
+    <form id="create-course-part-form" #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <label for="course-part-title" id="course-part-title-label">Title: </label> <br>
+        <input class="form-control" id="course-part-title" name="title" #title="ngModel" type="text" minlength="1" maxlength="255" placeholder="Enter course part title..." required [(ngModel)]="coursePart.title"/>
+        <div [hidden]="title.valid"
+             class="alert alert-danger">
+            Title is required
+        </div>
+        <label for="course-description" id="course-part-content-label">Content: </label>
+        <ejs-richtexteditor #toolsRTE id="course-part-content" [toolbarSettings]='tools' #fromRTE [(value)]='rteValue' required name="content" [(ngModel)]="coursePart.content" #content="ngModel"></ejs-richtexteditor>
+        <div [hidden]="content.valid"
+             class="alert alert-danger">
+            Content is required
+        </div>
+        <div class="text-right course-form-buttons">
+            <button type="submit" class="btn btn-success">Create</button>
+            <button type="button" class="btn btn-danger" (click)="toggleShowCreateCoursePart()">
+                Cancel
+            </button>
+        </div>
+    </form>
+</div>
+

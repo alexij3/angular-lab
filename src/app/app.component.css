@@ -5,3 +5,8 @@
 .course-card {
   margin-bottom: 15px;
 }
+
+.card-title:hover {
+  cursor: pointer;
+  color: #3a93ff;
+}

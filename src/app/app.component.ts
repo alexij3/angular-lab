@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {CourseService} from './service/course.service';
 import {SanitizeHtmlPipe} from './sanitize-html.pipe';
 import {animate, style, transition, trigger} from '@angular/animations';
+import {Course} from "./model/course";
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,11 @@ export class AppComponent implements OnInit {
 
   recentCourses: any = [];
 
+  selectedCourse: Course;
+
   public showCreateCourse: boolean;
+  public showCourseDetails: boolean;
+  public showCreateCoursePart: boolean;
 
   constructor(private _router: Router,
               private courseService: CourseService) {
@@ -36,6 +41,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.showCreateCourse = false;
+    this.showCourseDetails = false;
     this.syncRecentCourses();
   }
 
@@ -43,11 +49,25 @@ export class AppComponent implements OnInit {
     this.showCreateCourse = !this.showCreateCourse;
   }
 
-  public syncRecentCourses() {
+  public toggleShowCourseDetails(course: Course): void {
+    this.selectedCourse = course;
+    this.showCourseDetails = !this.showCourseDetails;
+    this.showCreateCoursePart = false;
+    this.showCreateCourse = false;
+  }
+
+  public syncRecentCourses(): void {
     this.courseService.getRecentCourses().subscribe(data => {
       this.recentCourses = data;
       console.log(data);
     });
   }
 
+  public toggleShowCreateCoursePart(): void {
+    this.showCreateCoursePart = !this.showCreateCoursePart;
+  }
+
+  public showRecentCourses(): boolean {
+    return !this.showCreateCourse && !this.showCreateCoursePart && !this.showCourseDetails;
+  }
 }

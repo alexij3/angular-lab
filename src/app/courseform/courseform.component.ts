@@ -3,6 +3,7 @@ import {Course} from '../model/course';
 import {NgForm} from '@angular/forms';
 import {CourseService} from '../service/course.service';
 import {AppComponent} from "../app.component";
+import {Coursepart} from "../model/coursepart";
 
 @Component({
   selector: 'app-courseform',
@@ -11,8 +12,8 @@ import {AppComponent} from "../app.component";
 })
 export class CourseformComponent implements OnInit {
 
-  course = new Course('', '', '', null, null, 0);
-  previewImageSrc: string | ArrayBuffer;
+  course = new Course(null, '', '', '', null, null, 0);
+  coursePart = new Coursepart(null, '', '');
 
   public tools: object = {
     items: [
@@ -44,4 +45,11 @@ export class CourseformComponent implements OnInit {
       }
   }
 
+  public toggleShowCreateCoursePart(): void {
+      this.appComponent.toggleShowCreateCoursePart();
+  }
+
+  public toggleShowCreateCourse(): void {
+      this.appComponent.toggleShowCreateCourse();
+  }
 }

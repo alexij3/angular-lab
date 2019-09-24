@@ -13,13 +13,18 @@ import { FormsModule } from '@angular/forms';
 import { CourseformComponent } from './courseform/courseform.component';
 import { SanitizeHtmlPipe } from './sanitize-html.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CoursedetailsComponent } from './coursedetails/coursedetails.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRegistrationComponent,
     BooksComponent,
-    CourseComponent, CoursemaintComponent, CourseformComponent, SanitizeHtmlPipe
+    CourseComponent,
+    CoursemaintComponent,
+    CourseformComponent,
+    SanitizeHtmlPipe,
+    CoursedetailsComponent
   ],
   imports: [
     BrowserModule,
