@@ -16,7 +16,15 @@ export class CourseService {
     return this.httpClient.get(this.baseUrl + '/courses/recent');
   }
 
-  public createCourse(course: Course): Observable<Course> {
+  public create(course: Course): Observable<Course> {
     return this.httpClient.post<Course>(this.baseUrl + '/courses/create', course);
+  }
+
+  public update(course: Course) {
+    return this.httpClient.put<Course>(this.baseUrl + '/courses/update', course);
+  }
+
+  public delete(id: number) {
+    return this.httpClient.delete(this.baseUrl + '/courses/' + id + '/delete');
   }
 }

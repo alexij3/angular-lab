@@ -1,0 +1,12 @@
+#course-details-buttons {
+    margin-top: 10px;
+}
+
+.course-parts li {
+    list-style: none;
+}
+
+.course-parts li:hover {
+    cursor: pointer;
+    color: #3a93ff;
+}
