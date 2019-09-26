@@ -14,6 +14,7 @@ import { SanitizeHtmlPipe } from './sanitize-html.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoursedetailsComponent } from './coursedetails/coursedetails.component';
 import { CoursePartDetailsComponent } from './course-part-details/course-part-details.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CoursePartDetailsComponent } from './course-part-details/course-part-de
     CourseformComponent,
     SanitizeHtmlPipe,
     CoursedetailsComponent,
-    CoursePartDetailsComponent
+    CoursePartDetailsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
