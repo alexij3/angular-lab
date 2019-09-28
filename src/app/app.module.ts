@@ -15,6 +15,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoursedetailsComponent } from './coursedetails/coursedetails.component';
 import { CoursePartDetailsComponent } from './course-part-details/course-part-details.component';
 import { LoginComponent } from './login/login.component';
+import { MainComponent } from './main/main.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { LoginComponent } from './login/login.component';
     SanitizeHtmlPipe,
     CoursedetailsComponent,
     CoursePartDetailsComponent,
-    LoginComponent
+    LoginComponent,
+    MainComponent,
+    HeaderComponent,
+    FooterComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

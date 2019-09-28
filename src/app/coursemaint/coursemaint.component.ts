@@ -26,8 +26,4 @@ export class CoursemaintComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  public toggleShowCreateCourse(): void {
-    this.appComponent.toggleShowCreateCourse();
-  }
 }

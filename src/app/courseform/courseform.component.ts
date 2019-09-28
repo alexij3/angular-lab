@@ -5,6 +5,8 @@ import {CourseService} from '../service/course.service';
 import {AppComponent} from "../app.component";
 import {Coursepart} from "../model/coursepart";
 import {CoursePartService} from "../service/course-part.service";
+import {Location} from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-courseform',
@@ -15,7 +17,7 @@ export class CourseformComponent implements OnInit {
 
   course = new Course(null, '', '', '', null, null, 0);
   coursePart = new Coursepart(null, '', '', null);
-  isEditMode: boolean;
+  editMode: boolean = false;
 
   public tools: object = {
     items: [
@@ -29,35 +31,32 @@ export class CourseformComponent implements OnInit {
 
   constructor(private courseService: CourseService,
               private coursePartService: CoursePartService,
-              private appComponent: AppComponent) { }
+              private appComponent: AppComponent,
+              private location: Location,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
-      this.coursePart.course = this.appComponent.selectedCourse;
-      this.isEditMode = this.appComponent.showEditCourse;
-      if (this.isEditMode) {
-          this.course = this.appComponent.selectedCourse;
-      }
+    this.course = JSON.parse(this.route.params['value'].course) as Course;
+    this.editMode = this.route.params['value'].editMode;
   }
 
   public createCourse(form: NgForm): void {
       if (form.valid) {
-        if (!this.isEditMode) {
+          if (!this.editMode) {
             this.courseService.create(this.course).subscribe(
-                response => {
-                    window.alert('Course has been successfully added!');
-                    this.appComponent.syncRecentCourses();
-                    this.appComponent.toggleShowCreateCourse();
-                },
-                err => window.alert('Something went wrong during course creation.'));
-        } else {
+              response => {
+                window.alert('Course has been successfully added!');
+                this.routeBack();
+              },
+              err => window.alert('Something went wrong during course creation.'));
+          } else {
             this.courseService.update(this.course).subscribe(
-                response => {
-                    window.alert('Course has been successfully updated!');
-                    this.appComponent.syncRecentCourses();
-                    this.appComponent.toggleShowEditCourse(null);
-                },
-                err => window.alert('Something went wrong during course update.'));
-        }
+              response => {
+                window.alert('Course has been successfully updated!');
+                this.routeBack();
+              },
+              err => window.alert('Something went wrong during course update.'));
+          }
       } else {
           window.alert('Form is invalid');
       }
@@ -68,24 +67,16 @@ export class CourseformComponent implements OnInit {
         if (form.valid) {
             this.coursePartService.createCoursePart(this.coursePart).subscribe(
                 response => {
-                    window.alert('Course has been successfully added!');
-                    this.appComponent.toggleShowCreateCoursePart();
+                    window.alert('Course part has been successfully added!');
+                    this.routeBack();
                 },
-                err => window.alert('Something went wrong during course creation.'));
+                err => window.alert('Something went wrong during course part creation.'));
         } else {
             window.alert('Form is invalid');
         }
     }
 
-  public toggleShowCreateCoursePart(): void {
-      this.appComponent.toggleShowCreateCoursePart();
-  }
-
-  public toggleShowCreateEditCourse(): void {
-      if (!this.isEditMode) {
-          this.appComponent.toggleShowCreateCourse();
-      } else {
-          this.appComponent.toggleShowEditCourse(null);
-      }
+  routeBack() {
+    this.location.back();
   }
 }

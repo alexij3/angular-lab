@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {NgForm} from "@angular/forms";
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +22,9 @@ export class LoginComponent implements OnInit {
           authorization : 'Basic ' + btoa(this.username + ':' + this.password)
       } : {});
 
-    this.httpClient.get('http://localhost:8080/user', {headers: headers}).subscribe(response => {
+      console.log(headers);
+
+      this.httpClient.get('http://localhost:8080/user', {headers: headers}).subscribe(response => {
       console.log(response);
     }, error => {
       console.log(error);

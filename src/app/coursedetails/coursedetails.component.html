@@ -1,7 +1,4 @@
-<div *ngIf="appComponent.showCreateCoursePart">
-  <app-courseform></app-courseform>
-</div>
-<div *ngIf="!appComponent.showCreateCoursePart && !appComponent.showCoursePart">
+<div>
   <div class="card">
     <h1 class="card-header">{{course.name}}</h1>
     <div class="card-body">
@@ -9,17 +6,9 @@
     </div>
   </div>
   <div id="course-details-buttons" class="text-right">
-    <button type="button" class="btn btn-primary" (click)="toggleShowCreateCoursePart()">
+    <button type="button" class="btn btn-primary">
       Add course part
     </button>
-    <button class="btn btn-secondary" (click)="toggleShowCourseDetails()">Return</button>
+    <button class="btn btn-secondary" (click)="routeBack()">Return</button>
   </div>
-</div>
-<div *ngIf="!appComponent.showCreateCoursePart && !appComponent.showCoursePart">
-  <ul *ngFor="let coursePart of selectedCourseParts" class="course-parts">
-    <li (click)="toggleShowCoursePart(coursePart)"><h2>{{coursePart.title}}</h2></li>
-  </ul>
-</div>
-<div *ngIf="appComponent.showCoursePart">
-  <app-course-part-details></app-course-part-details>
 </div>
