@@ -9,6 +9,7 @@ import {CoursedetailsComponent} from './course/coursedetails/coursedetails.compo
 import {CoursePartFormComponent} from './course/course-part-form/course-part-form.component';
 import {CoursePartDetailsComponent} from './course/course-part-details/course-part-details.component';
 import {LoginComponent} from './auth/login/login.component';
+import {AuthGuardService} from './service/auth-guard.service';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -19,7 +20,7 @@ const routes: Routes = [
   {path: 'login', component: MainComponent, children: [
       {path: '', component: LoginComponent}
     ]},
-  {path: 'create-course', component: MainComponent, children: [
+  {path: 'create-course', component: MainComponent, canActivate: [AuthGuardService], data: {expectedRole: 'ROLE_CM'}, children: [
       {path: '', component: CourseformComponent}
     ]},
   {path: 'edit-course', component: MainComponent, children: [

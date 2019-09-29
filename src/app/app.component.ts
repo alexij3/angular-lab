@@ -25,11 +25,11 @@ export class AppComponent implements OnInit {
       this.isLoggedIn = true;
       this.userRoles = this.tokenStorage.getAuthorities();
     }
-    console.log(this.isLoggedIn);
   }
 
   logout() {
     this.tokenStorage.signOut();
     this._router.navigateByUrl('/');
+    location.reload();
   }
 }

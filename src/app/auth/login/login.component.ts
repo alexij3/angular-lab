@@ -13,9 +13,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  username: string;
-  password: string;
   credentials: Credentials = new Credentials('', '');
+  errors: string[];
+  hasErrors: boolean;
 
   constructor(private authService: AuthenticationService,
               private tokenStorage: TokenStorageService,
@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   public login(form: NgForm) {
+    this.errors = [];
     this.authService.authenticate(this.credentials).subscribe(data => {
       this.tokenStorage.saveToken(data.accessToken);
       this.tokenStorage.saveUsername(data.username);
@@ -34,9 +35,17 @@ export class LoginComponent implements OnInit {
       this.appComponent.isLoggedIn = true;
       this.appComponent.userRoles = this.tokenStorage.getAuthorities();
 
+      this.hasErrors = false;
       this.router.navigateByUrl('/');
     }, err => {
-      alert(err.error.message);
+      if (err.error.errors) {
+        err.error.errors.forEach(error => {
+          this.errors.push(error.defaultMessage);
+        });
+      } else {
+        this.errors.push(err.error.message);
+      }
+      this.hasErrors = true;
     });
   }
 

@@ -6,7 +6,10 @@
   margin-left: auto;
 }
 
-
 .welcome {
   color: #3a93ff
+}
+
+a {
+  cursor: pointer;
 }
