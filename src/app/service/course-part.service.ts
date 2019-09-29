@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Course} from '../model/course';
 import {Observable} from 'rxjs';
-import {Coursepart} from '../model/coursepart';
+import {CoursePart} from '../model/course-part';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +13,9 @@ export class CoursePartService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public createCoursePart(coursePart: Coursepart): Observable<Coursepart> {
+  public createCoursePart(coursePart: CoursePart): Observable<CoursePart> {
     console.log(coursePart);
-    return this.httpClient.post<Coursepart>(this.baseUrl + '/courses/parts/create', coursePart);
+    return this.httpClient.post<CoursePart>(this.baseUrl + '/courses/parts/create', coursePart);
   }
 
   public getCourseParts(courseId: number) {

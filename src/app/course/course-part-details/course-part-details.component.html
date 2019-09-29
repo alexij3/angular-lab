@@ -1,0 +1,11 @@
+<div [@fadeInOut] class="container">
+  <div class="card">
+    <h1 class="card-header">{{coursePart.title}}</h1>
+    <div class="card-body">
+      <p class="card-text" [innerHTML]="coursePart.content | sanitizehtml"></p>
+    </div>
+  </div>
+  <div id="course-details-buttons" class="text-right">
+    <button class="btn btn-secondary" (click)="routeBack()">Return</button>
+  </div>
+</div>

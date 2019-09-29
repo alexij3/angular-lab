@@ -1,35 +1,35 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {CourseService} from './service/course.service';
-import {SanitizeHtmlPipe} from './sanitize-html.pipe';
-import {animate, style, transition, trigger} from '@angular/animations';
-import {Course} from "./model/course";
+import {TokenStorageService} from './service/token-storage.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  animations: [
-    trigger('fadeInOut', [
-      transition(':enter', [
-        style({transform: 'translateX(100%)'}),
-        animate('200ms ease-in', style({transform: 'translateX(0%)'}))
-      ]),
-      transition(':leave', [
-        animate('200ms ease-in', style({transform: 'translateX(100%)'}))
-      ])
-    ])
-  ]
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   router: string;
+  public userRoles: string[] = [];
+  public isLoggedIn: boolean;
 
   constructor(private _router: Router,
-              private courseService: CourseService) {
+              private courseService: CourseService,
+              private tokenStorage: TokenStorageService) {
 
     this.router = _router.url;
   }
 
   ngOnInit() {
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+      this.userRoles = this.tokenStorage.getAuthorities();
+    }
+    console.log(this.isLoggedIn);
+  }
+
+  logout() {
+    this.tokenStorage.signOut();
+    this._router.navigateByUrl('/');
   }
 }

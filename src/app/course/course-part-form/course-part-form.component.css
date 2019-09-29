@@ -1,0 +1,47 @@
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#course-part-content {
+  margin-bottom: 5px;
+}
+
+#date-time-wrapper label {
+  margin-right: 10px;
+}
+
+input {
+  margin-bottom: 5px;
+  padding-left: 8px;
+  width: 240px;
+}
+
+#course-part-title, #course-part-content {
+  width: 100%;
+}
+
+.course-part-form-buttons {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.course-part-form-buttons button {
+  margin-right: 10px;
+}

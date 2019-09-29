@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AppComponent} from '../app.component';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +10,16 @@ export class HeaderComponent implements OnInit {
 
   title = 'Online Courses';
 
-  constructor() { }
+  constructor(private appComponent: AppComponent) { }
 
   ngOnInit() {
   }
 
+  logout() {
+    this.appComponent.logout();
+  }
+
+  isLoggedIn(): boolean {
+    return this.appComponent.isLoggedIn;
+  }
 }

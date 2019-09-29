@@ -1,0 +1,22 @@
+<div class="form-group container" [@fadeInOut]>
+  <form id="create-course-part-form" #form="ngForm" (ngSubmit)="createCoursePart(form)">
+    <label for="course-part-title" id="course-part-title-label">Title: </label> <br>
+    <input class="form-control" id="course-part-title" name="title" #title="ngModel" type="text" minlength="1" maxlength="255" placeholder="Enter course part title..." required [(ngModel)]="coursePart.title"/>
+    <div [hidden]="title.valid"
+         class="alert alert-danger">
+      Title is required
+    </div>
+    <label for="course-part-content" id="course-part-content-label">Content: </label>
+    <ejs-richtexteditor #toolsRTE id="course-part-content" [toolbarSettings]='tools' #fromRTE [(value)]='rteValue' required name="content" [(ngModel)]="coursePart.content" #content="ngModel"></ejs-richtexteditor>
+    <div [hidden]="content.valid"
+         class="alert alert-danger">
+      Content is required
+    </div>
+    <div class="text-right course-part-form-buttons">
+      <button type="submit" class="btn btn-success">Create</button>
+      <button type="button" class="btn btn-danger" (click)="routeBack()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

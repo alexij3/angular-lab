@@ -13,7 +13,7 @@ export class UserService {
 
   public register(user: User) {
     console.log(user);
-    return this.httpClient.post<User>(this.baseUrl + '/register', user);
+    return this.httpClient.post<User>(this.baseUrl + '/auth/register', user);
   }
 
 }
