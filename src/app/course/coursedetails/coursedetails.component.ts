@@ -45,6 +45,10 @@ export class CoursedetailsComponent implements OnInit {
       });
   }
 
+  hasRole(role: string): boolean {
+    return this.appComponent.userRoles.indexOf(role) >= 0;
+  }
+
   routeBack() {
     this.location.back();
   }

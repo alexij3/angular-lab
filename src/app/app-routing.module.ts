@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'create-course', component: MainComponent, canActivate: [AuthGuardService], data: {expectedRole: 'ROLE_CM'}, children: [
       {path: '', component: CourseformComponent}
     ]},
-  {path: 'edit-course', component: MainComponent, children: [
+  {path: 'edit-course', component: MainComponent, canActivate: [AuthGuardService], data: {expectedRole: 'ROLE_CM'}, children: [
       {path: '', component: CourseformComponent}
     ]},
   {path: 'course-details', component: MainComponent, children: [
@@ -32,7 +32,7 @@ const routes: Routes = [
   {path: 'course-part-details', component: MainComponent, children: [
       {path: '', component: CoursePartDetailsComponent}
     ]},
-  {path: 'create-course-part', component: MainComponent, children: [
+  {path: 'create-course-part', canActivate: [AuthGuardService], data: {expectedRole: 'ROLE_CM'}, component: MainComponent, children: [
       {path: '', component: CoursePartFormComponent}
     ]},
 ];

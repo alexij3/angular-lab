@@ -15,11 +15,18 @@ export class AuthGuardService implements CanActivate {
               private router: Router,
               private tokenService: TokenStorageService) { }
 
-  canActivate(route: ActivatedRouteSnapshot): boolean{
+  canActivate(route: ActivatedRouteSnapshot): boolean {
     const expectedRole = route.data.expectedRole;
 
     const hasRole = this.tokenService.getAuthorities().indexOf(expectedRole) >= 0;
+
+    if (route.data.homeIfLoggedIn && this.authService.isAuthenticated()) {
+      this.router.navigateByUrl('/');
+      return false;
+    }
+
     if (!this.authService.isAuthenticated() || !hasRole) {
+      this.router.navigateByUrl('/');
       return false;
     }
     return true;
