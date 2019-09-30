@@ -8,26 +8,58 @@
           <div class="input-group-prepend">
             <span class="input-group-text"> <i class="fa fa-user"></i> </span>
           </div>
-          <input name="username" class="form-control" placeholder="Username" type="text" #username="ngModel" [(ngModel)]="user.username">
-        </div> <!-- form-group// -->
+          <input name="username" class="form-control" placeholder="Username" type="text" #username="ngModel" [(ngModel)]="user.username" [minlength]="6" [maxLength]="20" required>
+        </div>
+        <div [hidden]="username.valid" class="errors alert alert-danger">
+          <ul>
+            <li *ngIf="user.username.length == 0">
+              Username is required
+            </li>
+            <li *ngIf="user.username.length < 6 || user.username.length > 32">
+              Username should contain from 6 to 20 characters
+            </li>
+          </ul>
+        </div>
+        <!-- form-group// -->
         <div class="form-group input-group">
           <div class="input-group-prepend">
             <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
           </div>
-          <input name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" placeholder="Email address" type="email">
+          <input name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" placeholder="example@my.c" type="email" pattern="[^@]+@[^\.]+\..+" required>
         </div> <!-- form-group// -->
+          <div [hidden]="email.valid" class="errors alert alert-danger">
+              Email is invalid. Example: <i>example@ex.c</i>
+              <ul>
+                  <li *ngIf="user.email.length == 0">
+                      Email is required
+                  </li>
+              </ul>
+          </div>
         <div class="form-group input-group">
           <div class="input-group-prepend">
             <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
           </div>
-          <input name="dateOfBirth" #dateOfBirth="ngModel" [(ngModel)]="user.dateOfBirth" class="form-control" type="date" title="Date of birth">
+          <input name="dateOfBirth" #dateOfBirth="ngModel" [(ngModel)]="user.dateOfBirth" class="form-control" type="date" title="Date of birth" required>
         </div> <!-- form-group// -->
+        <div [hidden]="dateOfBirth.valid" class="errors alert alert-danger">
+          Date of birth is required
+        </div>
         <div class="form-group input-group">
           <div class="input-group-prepend">
             <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
           </div>
-          <input class="form-control" placeholder="Create password" name="password" #password="ngModel" [(ngModel)]="user.password" type="password">
+          <input class="form-control" placeholder="Create password" name="password" #password="ngModel" [(ngModel)]="user.password" type="password" required [minlength]="8" [maxLength]="32">
         </div> <!-- form-group// -->
+        <div [hidden]="password.valid" class="errors alert alert-danger">
+          <ul>
+            <li *ngIf="user.password.length == 0">
+              Password is required
+            </li>
+            <li *ngIf="user.password.length < 8 || user.password.length > 32">
+              Password should contain from 8 to 32 characters
+            </li>
+          </ul>
+        </div>
         <div class="form-group">
           <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
         </div> <!-- form-group// -->

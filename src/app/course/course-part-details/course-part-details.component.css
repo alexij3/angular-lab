@@ -9,3 +9,17 @@
 #course-details-buttons {
   margin-top: 10px;
 }
+
+.course-part-actions {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+}
+
+.course-part-actions i {
+  margin-right: 5px;
+}
+
+.course-part-actions i:hover{
+  cursor: pointer;
+}

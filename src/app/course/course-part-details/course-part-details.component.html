@@ -1,5 +1,9 @@
 <div [@fadeInOut] class="container">
   <div class="card">
+    <div class="course-part-actions" *ngIf="hasRole('ROLE_CM')">
+      <i class="fas fa-pencil-alt" id="edit-course-part" [routerLink]="['/edit-course-part', {coursePart: coursePart | json, editMode: true, course: coursePart.course | json}]"></i>
+      <i class="far fa-times-circle" style="color: red" id="delete-course" (click)="deleteCoursePart(course)"></i>
+    </div>
     <h1 class="card-header">{{coursePart.title}}</h1>
     <div class="card-body">
       <p class="card-text" [innerHTML]="coursePart.content | sanitizehtml"></p>

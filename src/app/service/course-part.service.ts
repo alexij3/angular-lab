@@ -21,4 +21,12 @@ export class CoursePartService {
   public getCourseParts(courseId: number) {
     return this.httpClient.get(this.baseUrl + '/courses/' + courseId + '/parts');
   }
+
+  public delete(id: any) {
+    return this.httpClient.delete(this.baseUrl + '/courses/parts/' + id + '/delete');
+  }
+
+  public updateCoursePart(coursePart: CoursePart) {
+    return this.httpClient.post<CoursePart>(this.baseUrl + '/courses/parts/update', coursePart);
+  }
 }

@@ -4,6 +4,7 @@ import {Course} from '../model/course';
 import {AppComponent} from '../app.component';
 import {animate, style, transition, trigger} from '@angular/animations';
 import {AuthenticationService} from '../service/authentication.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-dashboard',
@@ -41,15 +42,31 @@ export class DashboardComponent implements OnInit {
   }
 
   public deleteCourse(course: Course) {
-    if (confirm('Do you really want to delete the course?')) {
-      this.courseService.delete(course.id).subscribe(response => {
-          window.alert('Course has been successfully deleted.');
-          this.syncRecentCourses();
-        },
-        error => {
-          window.alert('Could not delete the course.');
-        });
-    }
+      Swal.fire({
+          type: 'warning',
+          title: 'Are you sure that you want to delete the course?',
+          text: 'You wont be able to revert the changes',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes'
+      }).then((result) => {
+          if (result.value) {
+              this.courseService.delete(course.id).subscribe(response => {
+                      Swal.fire({
+                          type: 'success',
+                          text: 'Course has been successfully deleted.'
+                      });
+                      this.syncRecentCourses();
+                  },
+                  error => {
+                      Swal.fire({
+                          type: 'error',
+                          text: 'Could not delete the course.'
+                      });
+                  });
+          }
+      });
   }
 
   hasRole(role: string): boolean {

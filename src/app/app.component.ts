@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.tokenStorage.signOut();
-    this._router.navigateByUrl('/');
-    location.reload();
+    this.userRoles = [];
+    this._router.navigate(['/dashboard']);
   }
 }

@@ -28,3 +28,7 @@
   background-color: #42AEEC;
   color: #fff;
 }
+
+.errors ul {
+  margin-bottom: 0;
+}

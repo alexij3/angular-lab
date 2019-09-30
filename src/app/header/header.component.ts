@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AppComponent} from '../app.component';
+import {AuthenticationService} from "../service/authentication.service";
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,8 @@ export class HeaderComponent implements OnInit {
 
   title = 'Online Courses';
 
-  constructor(private appComponent: AppComponent) { }
+  constructor(private appComponent: AppComponent,
+              private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
   }
@@ -20,6 +22,6 @@ export class HeaderComponent implements OnInit {
   }
 
   isLoggedIn(): boolean {
-    return this.appComponent.isLoggedIn;
+    return this.authenticationService.isAuthenticated();
   }
 }

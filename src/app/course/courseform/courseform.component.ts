@@ -8,6 +8,7 @@ import {Location} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
 import {animate, style, transition, trigger} from '@angular/animations';
 import {CoursePart} from '../../model/course-part';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-courseform',
@@ -61,20 +62,39 @@ export class CourseformComponent implements OnInit {
           if (!this.editMode) {
             this.courseService.create(this.course).subscribe(
               response => {
-                window.alert('Course has been successfully added!');
+                Swal.fire({
+                    type: 'success',
+                    text: 'Course has been successfully created!'
+                });
                 this.routeBack();
               },
-              err => window.alert('Something went wrong during course creation.'));
+              err => {
+                  Swal.fire({
+                      type: 'error',
+                      text: 'Something went wrong during course creation.'
+                  });
+              });
           } else {
             this.courseService.update(this.course).subscribe(
               response => {
-                window.alert('Course has been successfully updated!');
+                  Swal.fire({
+                      type: 'success',
+                      text: 'Course has been successfully updated.'
+                  });
                 this.routeBack();
               },
-              err => window.alert('Something went wrong during course update.'));
+              err => {
+                  Swal.fire({
+                      type: 'error',
+                      text: 'Something went wrong during course update.'
+                  });
+              });
           }
       } else {
-          window.alert('Form is invalid');
+          Swal.fire({
+              type: 'error',
+              text: 'The data for the course is invalid.'
+          });
       }
   }
 

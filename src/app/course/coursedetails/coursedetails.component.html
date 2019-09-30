@@ -1,5 +1,6 @@
 <div [@fadeInOut] class="container">
   <div class="card">
+    <button class="btn">Subscribe for {{course.price == 0 ? 'free' : course.price + ' UAH'}}</button>
     <h1 class="card-header">{{course.name}}</h1>
     <div class="card-body">
       <p class="card-text" [innerHTML]="course.description | sanitizehtml"></p>

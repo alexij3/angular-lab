@@ -26,6 +26,9 @@ const routes: Routes = [
   {path: 'edit-course', component: MainComponent, canActivate: [AuthGuardService], data: {expectedRole: 'ROLE_CM'}, children: [
       {path: '', component: CourseformComponent}
     ]},
+{path: 'edit-course-part', component: MainComponent, canActivate: [AuthGuardService], data: {expectedRole: 'ROLE_CM'}, children: [
+        {path: '', component: CoursePartFormComponent}
+    ]},
   {path: 'course-details', component: MainComponent, children: [
       {path: '', component: CoursedetailsComponent}
     ]},

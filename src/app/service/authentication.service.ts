@@ -28,6 +28,7 @@ export class AuthenticationService {
   }
 
   isAuthenticated(): boolean {
+    console.log(this.tokenStorage.getToken());
     return !!this.tokenStorage.getToken();
   }
 }
