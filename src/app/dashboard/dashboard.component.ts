@@ -37,7 +37,6 @@ export class DashboardComponent implements OnInit {
   public syncRecentCourses(): void {
     this.courseService.getRecentCourses().subscribe(data => {
       this.recentCourses = data;
-      console.log(data);
     });
   }
 

@@ -34,8 +34,6 @@ export class CoursePartDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.coursePart = JSON.parse(this.route.params['value'].coursePart) as CoursePart;
-    console.log('init course part details: ');
-    console.log(this.coursePart);
   }
 
   routeBack() {
@@ -58,6 +56,7 @@ export class CoursePartDetailsComponent implements OnInit {
                 type: 'success',
                 text: 'Course part has been successfully deleted.'
               });
+              this.routeBack();
             },
             error => {
               Swal.fire({

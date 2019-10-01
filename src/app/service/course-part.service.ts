@@ -14,7 +14,6 @@ export class CoursePartService {
   constructor(private httpClient: HttpClient) { }
 
   public createCoursePart(coursePart: CoursePart): Observable<CoursePart> {
-    console.log(coursePart);
     return this.httpClient.post<CoursePart>(this.baseUrl + '/courses/parts/create', coursePart);
   }
 
@@ -27,6 +26,6 @@ export class CoursePartService {
   }
 
   public updateCoursePart(coursePart: CoursePart) {
-    return this.httpClient.post<CoursePart>(this.baseUrl + '/courses/parts/update', coursePart);
+    return this.httpClient.put<CoursePart>(this.baseUrl + '/courses/parts/update', coursePart);
   }
 }

@@ -29,7 +29,7 @@ import Swal from 'sweetalert2'
 export class CourseformComponent implements OnInit {
 
   course = new Course(null, '', '', '', null, null, 0);
-  coursePart = new CoursePart(null, '', '');
+  coursePart = new CoursePart(null, null, '', '');
   editMode: boolean = false;
 
   public tools: object = {

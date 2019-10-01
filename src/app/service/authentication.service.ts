@@ -19,7 +19,6 @@ export class AuthenticationService {
               private tokenStorage: TokenStorageService) { }
 
   authenticate(credentials: Credentials): Observable<JwtResponse> {
-    console.log(credentials);
     return this.httpClient.post<JwtResponse>(this.loginUrl, credentials);
   }
 
@@ -28,7 +27,6 @@ export class AuthenticationService {
   }
 
   isAuthenticated(): boolean {
-    console.log(this.tokenStorage.getToken());
     return !!this.tokenStorage.getToken();
   }
 }

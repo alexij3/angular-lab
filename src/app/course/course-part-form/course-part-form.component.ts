@@ -26,7 +26,7 @@ import Swal from 'sweetalert2';
 })
 export class CoursePartFormComponent implements OnInit {
 
-  coursePart: CoursePart = new CoursePart(null, '', '');
+  coursePart: CoursePart = new CoursePart(null, null, '', '');
   editMode: boolean;
 
   constructor(private route: ActivatedRoute,
@@ -39,15 +39,12 @@ export class CoursePartFormComponent implements OnInit {
       this.coursePart.course = JSON.parse(this.route.params['value'].course) as Course;
       this.coursePart = JSON.parse(this.route.params['value'].coursePart) as CoursePart;
     } else {
-      this.coursePart = new CoursePart(null, '', '');
+      this.coursePart = new CoursePart(null, null, '', '');
       this.coursePart.course = JSON.parse(this.route.params['value'].course) as Course;
     }
-    console.log('course part form course part:');
-    console.log(this.coursePart);
   }
 
   public createCoursePart(form: NgForm): void {
-    console.log(this.coursePart);
     if (form.valid) {
       if (!this.editMode) {
         this.coursePartService.createCoursePart(this.coursePart).subscribe(
@@ -65,6 +62,7 @@ export class CoursePartFormComponent implements OnInit {
               });
             });
       } else {
+        console.log(this.coursePart);
         this.coursePartService.updateCoursePart(this.coursePart).subscribe(
             response => {
               Swal.fire({
