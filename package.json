@@ -23,7 +23,7 @@
     "@syncfusion/ej2-angular-richtexteditor": "^17.2.49",
     "angular-in-memory-web-api": "^0.8.0",
     "core-js": "^2.5.4",
-    "froala-editor": "^3.0.5",
+    "froala-editor": "^4.0.7",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
     "rxjs": "~6.3.3",
